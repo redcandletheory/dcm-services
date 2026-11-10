@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1194,7 +1194,7 @@ const DCM_DB = {
         const GSK_DETAILS = {
             "6": { func: "gskkm_open_database() / qycu_listCertificatesJ", target: "/QIBM/UserData/ICSS/Cert/Server/DEFAULT.KDB", domain: "GSKit Key Management", cause: "Keystore database open failure or certificate expiration. Check IFS directory authorities or ensure DEFAULT.KDB exists." },
             "16": { func: "gskkm_open_database()", target: "/QIBM/UserData/ICSS/Cert/Server/DEFAULT.STH", domain: "GSKit Stash Password", cause: "Keystore password invalid or password stash file (.STH) out-of-sync with DEFAULT.KDB." },
-            "24": { func: "gskkm_crypto_init()", target: "QSYS/QFLAGSK & 4767/4769 Coprocessor", domain: "Cryptographic Subsystem", cause: "Low-level cryptographic hardware or software provider algorithm execution failure." },
+            "24": { func: "gskkm_crypto_init()", target: "4767/4769 Coprocessor", domain: "Cryptographic Subsystem", cause: "Low-level cryptographic hardware or software provider algorithm execution failure." },
             "6000": { func: "gsk_secure_soc_init()", target: "Certificate Authority Store", domain: "Trust Verification", cause: "The certificate presented is not signed by a CA marked as *TRUSTED in the keystore." },
             "6007": { func: "gsk_environment_init()", target: "Registration Facility (QSYRGFL)", domain: "Application Registration", cause: "Application ID is not registered in the IBM i Registration Facility (WRKREGINF)." },
             "6011": { func: "gsk_secure_soc_init()", target: "System TLS / QSSLPCL", domain: "Cipher Negotiation", cause: "No overlapping cipher suites between client and server under current system values." },
@@ -1273,7 +1273,7 @@ const DCM_DB = {
                     code: num,
                     constant: constName,
                     func: detail ? detail.func : "gsk_secure_soc_init() / gsk_environment_init()",
-                    target: detail ? detail.target : "TLS Subsystem / QFLAGSK",
+                    target: detail ? detail.target : "TLS Subsystem",
                     domain: detail ? detail.domain : "GSKSSL Protocol (gskssl.h)",
                     cause: detail ? detail.cause : `GSKit SSL Return Code ${num}: ${constName}`
                 };
@@ -1440,7 +1440,7 @@ const DCM_DB = {
                     </div>
                     <div class="sequence-steps">
                         <div class="sequence-step">
-                            <strong>1. Keystore Decryption Invocation (Native C Layer):</strong> When the DCM application or WebSphere/Liberty ADMIN3 server initializes TLS, it executes <code>qycu_open_key_db()</code> or <code>gsk_environment_init()</code> in service program <code>QSYS/QFLAGSK</code> to open <code>/QIBM/UserData/ICSS/Cert/Server/DEFAULT.KDB</code>.
+                            <strong>1. Keystore Decryption Invocation (Native C Layer):</strong> When the DCM application or WebSphere/Liberty ADMIN3 server initializes TLS, it executes <code>qycu_open_key_db()</code> or <code>gsk_environment_init()</code> to open <code>/QIBM/UserData/ICSS/Cert/Server/DEFAULT.KDB</code>.
                         </div>
                         <div class="sequence-step">
                             <strong>2. Password Stash Extraction (.STH):</strong> To open the CMS keystore non-interactively without user prompts, the runtime reads the password obfuscation stream stored in <code>DEFAULT.STH</code>.
@@ -1846,8 +1846,8 @@ const DCM_DB = {
                     </div>
                     <div class="decomp-item">
                         <div class="decomp-label">Service Program</div>
-                        <div class="decomp-val">QSYS/QFLAGSK</div>
-                        <div class="decomp-sub">IBM i System Module</div>
+                        <div class="decomp-val">GSKit</div>
+                        <div class="decomp-sub">IBM i TLS runtime</div>
                     </div>
                     <div class="decomp-item">
                         <div class="decomp-label">Target Subsystem</div>

@@ -29,15 +29,13 @@ It provides these core, verified capabilities:
 
 Every path, service program, header, and command documented here is part of the standard IBM i operating system:
 
-### A. Real IBM i GSKit C Header & Service Program
+### A. Real IBM i GSKit C Header
 * **C Header Member**: `QSYSINC/H(GSKSSL)`
 * **IFS Header Path**: `/QIBM/include/gskssl.h`
 * **Licensed Program**: `5770-SS1` Option 13 (*System Openness Includes*)
-* **Runtime Service Program**: `QSYS/QFLAGSK` (bound to programs using TLS APIs via `QSYS/QUSAPIBD`)
 * **How to Verify on IBM i**:
   ```cl
   DSPF STMF('/QIBM/include/gskssl.h')
-  DSPOBJD OBJ(QSYS/QFLAGSK) OBJTYPE(*SRVPGM)
   ```
 
 ### B. Real Digital Certificate Manager (DCM) IFS Files

@@ -44,7 +44,6 @@ Results are built from the reference data and the pasted log; the page does not 
 | Object / Member | Physical Location on IBM i | Licensed Program | Purpose |
 | :--- | :--- | :--- | :--- |
 | **`QSYSINC/H(GSKSSL)`**<br>`/QIBM/include/gskssl.h` | `DSPF STMF('/QIBM/include/gskssl.h')`<br>`WRKMBRPDM FILE(QSYSINC/H) MBR(GSKSSL)` | **5770-SS1 Option 13** (*System Openness Includes*) | Defines official TLS/SSL protocol return codes (`0` to `501`) and IBM i extended return codes (`6000` to `6021`). |
-| **`QSYS/QFLAGSK`** | `DSPOBJD OBJ(QSYS/QFLAGSK) OBJTYPE(*SRVPGM)` | **5770-SS1 Base** | IBM i runtime service program providing GSKit SSL/TLS cryptographic routines. |
 | **`DEFAULT.KDB`** | `/QIBM/UserData/ICSS/Cert/Server/DEFAULT.KDB` | **5770-SS1 Option 34** (*Digital Certificate Manager*) | Default IBM i system certificate key database. |
 | **`DEFAULT.STH`** | `/QIBM/UserData/ICSS/Cert/Server/DEFAULT.STH` | **5770-SS1 Option 34** (*Digital Certificate Manager*) | Encrypted password stash file for system certificate store. |
 | **`SystemOut` / `messages` logs** | the `logs/` folder under your instance's `server.config.dir` (the IAS log header prints it, for example `/QIBM/UserData/OS/AdminInst/<instance>/wlp/usr/servers/<server>/`) | **5770-DG1** (*HTTP Server for i*) / IAS | Liberty trace log of the IAS instance. Paste lines from any IAS instance running secured (TLS) jobs. |

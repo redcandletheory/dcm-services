@@ -63,52 +63,52 @@ public class DcmSearchService {
 
     private void initDatabase() {
         // Official GSKit Return Codes from /QIBM/include/gskssl.h
-        addGskCode(0L, "GSK_OK", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "Session Active", "Normal Execution", "Operation completed successfully.");
-        addGskCode(1L, "GSK_INVALID_HANDLE", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "Handle Reference", "API Parameter Error", "An invalid environment or secure socket handle was specified.");
-        addGskCode(2L, "GSK_API_NOT_AVAILABLE", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "Cryptographic Engine", "Subsystem Unavailable", "The requested cryptographic API is not available on the system.");
-        addGskCode(3L, "GSK_INTERNAL_ERROR", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "Internal Routine", "Subsystem Fault", "An unexpected internal cryptographic subsystem error occurred.");
-        addGskCode(4L, "GSK_INSUFFICIENT_STORAGE", "gsk_environment_init()", "QSYS/QFLAGSK", "System Memory", "Resource Exhaustion", "Insufficient system memory / storage available for operation.");
-        addGskCode(5L, "GSK_NO_KEYFILE_PASSWORD", "gsk_environment_init()", "QSYS/QFLAGSK", "/QIBM/UserData/ICSS/Cert/Server/DEFAULT.STH", "Key Database Security", "No password was supplied to access the key database.");
-        addGskCode(6L, "GSK_KEYFILE_CERT_EXPIRED", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "Key Store Certificate", "Certificate Expiration", "The certificate in the keyfile is expired.");
-        addGskCode(7L, "GSK_ERROR_LOAD_GSK", "gsk_environment_init()", "QSYS/QFLAGSK", "GSKit Dynamic Library", "Library Load Failure", "Unable to dynamically load the GSKit runtime library.");
-        addGskCode(8L, "GSK_ERROR_CERT_VALIDATION", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "Peer / CA Certificate", "Certificate Validation", "Certificate validation failed.");
-        addGskCode(201L, "GSK_KEYFILE_INVALID_FORMAT", "gsk_environment_init()", "QSYS/QFLAGSK", "DEFAULT.KDB", "Key Store Format", "Key database file format is invalid or corrupted.");
-        addGskCode(202L, "GSK_KEYFILE_INVALID_PASSWORD", "gsk_environment_init()", "QSYS/QFLAGSK", "DEFAULT.STH", "Key Store Authentication", "Incorrect password supplied for key database or stash file mismatch.");
-        addGskCode(406L, "GSK_ERROR_IO", "gsk_secure_soc_read()", "QSYS/QFLAGSK", "TCP/IP Socket", "Socket I/O", "Low-level socket communication failure or abrupt TCP connection reset.", "NETSTAT *CNN", "WRKJOB JOB(*)");
-        addGskCode(407L, "GSK_ERROR_BAD_KEYFILE_LABEL", "gsk_environment_init()", "QSYS/QFLAGSK", "DEFAULT.KDB", "Certificate Label", "Specified certificate label was not found in the key database.");
-        addGskCode(408L, "GSK_ERROR_BAD_KEYFILE_PASSWORD", "gsk_environment_init()", "QSYS/QFLAGSK", "DEFAULT.STH", "Key Database Password", "Bad keyfile password or password expired.");
-        addGskCode(409L, "GSK_ERROR_BAD_KEY_LEN", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "Cryptographic Key", "Key Parameter", "Invalid cryptographic key length.");
-        addGskCode(410L, "GSK_ERROR_BAD_CERTIFICATE", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "X.509 Certificate", "ASN.1 Parsing", "Certificate structure or ASN.1 encoding is invalid.");
-        addGskCode(411L, "GSK_ERROR_BAD_CERT_SIG", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "X.509 Signature", "Integrity Check", "Certificate signature verification failed.");
-        addGskCode(412L, "GSK_ERROR_UNSUPPORTED_CERTIFICATE_TYPE", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "Certificate Type", "Policy Error", "Certificate type is not supported by GSKit.");
-        addGskCode(414L, "GSK_ERROR_NO_CIPHERS", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "System Value QSSLCSL", "Cipher Negotiation", "No valid cipher suites available or configured in system value QSSLCSL.");
-        addGskCode(415L, "GSK_ERROR_NO_CERTIFICATE", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "Peer Certificate", "Client Auth", "No certificate was sent by the remote peer.");
-        addGskCode(417L, "GSK_ERROR_BAD_PEER", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "TLS Protocol Handshake", "Protocol Violation", "Remote peer sent an invalid TLS alert or handshake message.");
-        addGskCode(420L, "GSK_ERROR_SOCKET_CLOSED", "gsk_secure_soc_read()", "QSYS/QFLAGSK", "TCP/IP Connection", "Connection State", "Secure socket connection was closed.");
-        addGskCode(429L, "GSK_ERROR_NOT_SUPPORTED", "gsk_environment_init()", "QSYS/QFLAGSK", "GSKit Feature", "Configuration", "Requested TLS feature or protocol version is not supported.");
-        addGskCode(501L, "GSK_CONFLICTING_VALIDATION_TYPES", "gsk_environment_init()", "QSYS/QFLAGSK", "Validation Settings", "Configuration", "Conflicting validation modes were enabled simultaneously.");
-        addGskCode(6000L, "GSK_AS400_ERROR_NOT_TRUSTED", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "Trust Store (DEFAULT.KDB)", "Trust Chain Verification", "Certificate Authority (CA) that signed the peer certificate is not trusted.", "WRKLNK OBJ('/QIBM/UserData/ICSS/Cert/Server/*')");
-        addGskCode(6001L, "GSK_AS400_ERROR_BAD_CERTIFICATE", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "IBM i X.509 Parser", "Certificate Format", "IBM i extended error: Malformed certificate presented.");
-        addGskCode(6002L, "GSK_AS400_ERROR_NO_TEMPORARY_STORAGE", "gsk_environment_init()", "QSYS/QFLAGSK", "System Storage", "Resource Limit", "Temporary cryptographic storage exhausted on IBM i.");
-        addGskCode(6003L, "GSK_AS400_ERROR_EXPIRED_CERTIFICATE", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "Peer / Local Certificate", "Certificate Validity", "Certificate presented during handshake has expired.");
-        addGskCode(6004L, "GSK_AS400_ERROR_NO_CERTIFICATE", "gsk_environment_init()", "QSYS/QFLAGSK", "DCM Application", "Certificate Assignment", "No certificate available for assignment.");
-        addGskCode(6005L, "GSK_AS400_ERROR_CERTIFICATE_REVOKED", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "CRL / OCSP Responder", "Revocation Check", "Certificate has been revoked according to CRL / OCSP.");
-        addGskCode(6006L, "GSK_AS400_ERROR_NO_REVOCATION_STATUS", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "CRL / OCSP Server", "Network Availability", "Revocation status could not be determined.");
-        addGskCode(6007L, "GSK_AS400_ERROR_APPLICATION_NOT_REGISTERED", "gsk_environment_init()", "QSYS/QFLAGSK", "Registration Facility", "Application ID Lookup", "Application ID specified is not registered in Registration Facility (WRKREGINF).", "WRKREGINF");
-        addGskCode(6008L, "GSK_AS400_ERROR_NO_KEYRING", "gsk_environment_init()", "QSYS/QFLAGSK", "Keyring Object", "IFS Path Resolution", "Keyring or certificate store not found.");
-        addGskCode(6009L, "GSK_AS400_ERROR_INVALID_USAGE", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "Certificate Extended Key Usage", "Key Usage Validation", "Certificate is not valid for the requested usage (e.g., server vs client authentication).");
-        addGskCode(6010L, "GSK_AS400_ERROR_INVALID_USAGE_FOR_ENCRYPTED_SESSION", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "Key Usage Field", "Session Encryption", "Certificate key usage does not permit session encryption.");
-        addGskCode(6011L, "GSK_AS400_ERROR_BAD_CIPHER_SUITE", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "System Value QSSLCSL", "Cipher Suite Negotiation", "No mutual cipher suite negotiated; check system value QSSLCSL.");
-        addGskCode(6012L, "GSK_AS400_ERROR_TIMED_OUT", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "TLS Handshake Timer", "Network Timeout", "TLS handshake operation timed out.");
-        addGskCode(6013L, "GSK_AS400_ERROR_RENEGOTIATION_NOT_ALLOWED", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "TLS Session State", "Renegotiation Policy", "Session renegotiation was requested but is disallowed by policy.");
-        addGskCode(6014L, "GSK_AS400_ERROR_INVALID_ATTR", "gsk_environment_init()", "QSYS/QFLAGSK", "Environment Attributes", "Attribute ID", "Invalid GSKit environment attribute identifier.");
-        addGskCode(6015L, "GSK_AS400_ERROR_INVALID_ATTR_VALUE", "gsk_environment_init()", "QSYS/QFLAGSK", "Environment Attributes", "Attribute Value", "Invalid GSKit attribute value provided.");
-        addGskCode(6016L, "GSK_AS400_ERROR_NOT_SUPPORTED_FOR_SESSION", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "Session Parameters", "Session Capability", "Option not supported for active session.");
-        addGskCode(6017L, "GSK_AS400_ERROR_ALPN_NO_MATCH", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "ALPN Protocols", "Protocol Negotiation", "Application-Layer Protocol Negotiation (ALPN) found no match.");
-        addGskCode(6018L, "GSK_AS400_ERROR_CERT_VALIDATE", "gsk_secure_soc_init()", "QSYS/QFLAGSK", "Trust Store", "Validation Policy", "Certificate validation check failed.");
-        addGskCode(6019L, "GSK_AS400_ERROR_NO_DEFAULT_CERT", "gsk_environment_init()", "QSYS/QFLAGSK", "WRKREGINF / *SYSTEM Store", "Certificate Assignment", "Application ID has no certificate assigned in Digital Certificate Manager (WRKREGINF).", "WRKREGINF");
-        addGskCode(6020L, "GSK_AS400_ERROR_SESSION_TICKETS_NOT_SUPPORTED", "gsk_environment_init()", "QSYS/QFLAGSK", "TLS Session Tickets", "Protocol Feature", "TLS session tickets not supported.");
-        addGskCode(6021L, "GSK_AS400_ERROR_EXTENDED_MASTER_SECRET_NOT_SUPPORTED", "gsk_environment_init()", "QSYS/QFLAGSK", "Extended Master Secret", "Extension Support", "Extended Master Secret extension not supported.");
+        addGskCode(0L, "GSK_OK", "gsk_secure_soc_init()", "GSKit", "Session Active", "Normal Execution", "Operation completed successfully.");
+        addGskCode(1L, "GSK_INVALID_HANDLE", "gsk_secure_soc_init()", "GSKit", "Handle Reference", "API Parameter Error", "An invalid environment or secure socket handle was specified.");
+        addGskCode(2L, "GSK_API_NOT_AVAILABLE", "gsk_secure_soc_init()", "GSKit", "Cryptographic Engine", "Subsystem Unavailable", "The requested cryptographic API is not available on the system.");
+        addGskCode(3L, "GSK_INTERNAL_ERROR", "gsk_secure_soc_init()", "GSKit", "Internal Routine", "Subsystem Fault", "An unexpected internal cryptographic subsystem error occurred.");
+        addGskCode(4L, "GSK_INSUFFICIENT_STORAGE", "gsk_environment_init()", "GSKit", "System Memory", "Resource Exhaustion", "Insufficient system memory / storage available for operation.");
+        addGskCode(5L, "GSK_NO_KEYFILE_PASSWORD", "gsk_environment_init()", "GSKit", "/QIBM/UserData/ICSS/Cert/Server/DEFAULT.STH", "Key Database Security", "No password was supplied to access the key database.");
+        addGskCode(6L, "GSK_KEYFILE_CERT_EXPIRED", "gsk_secure_soc_init()", "GSKit", "Key Store Certificate", "Certificate Expiration", "The certificate in the keyfile is expired.");
+        addGskCode(7L, "GSK_ERROR_LOAD_GSK", "gsk_environment_init()", "GSKit", "GSKit Dynamic Library", "Library Load Failure", "Unable to dynamically load the GSKit runtime library.");
+        addGskCode(8L, "GSK_ERROR_CERT_VALIDATION", "gsk_secure_soc_init()", "GSKit", "Peer / CA Certificate", "Certificate Validation", "Certificate validation failed.");
+        addGskCode(201L, "GSK_KEYFILE_INVALID_FORMAT", "gsk_environment_init()", "GSKit", "DEFAULT.KDB", "Key Store Format", "Key database file format is invalid or corrupted.");
+        addGskCode(202L, "GSK_KEYFILE_INVALID_PASSWORD", "gsk_environment_init()", "GSKit", "DEFAULT.STH", "Key Store Authentication", "Incorrect password supplied for key database or stash file mismatch.");
+        addGskCode(406L, "GSK_ERROR_IO", "gsk_secure_soc_read()", "GSKit", "TCP/IP Socket", "Socket I/O", "Low-level socket communication failure or abrupt TCP connection reset.", "NETSTAT *CNN", "WRKJOB JOB(*)");
+        addGskCode(407L, "GSK_ERROR_BAD_KEYFILE_LABEL", "gsk_environment_init()", "GSKit", "DEFAULT.KDB", "Certificate Label", "Specified certificate label was not found in the key database.");
+        addGskCode(408L, "GSK_ERROR_BAD_KEYFILE_PASSWORD", "gsk_environment_init()", "GSKit", "DEFAULT.STH", "Key Database Password", "Bad keyfile password or password expired.");
+        addGskCode(409L, "GSK_ERROR_BAD_KEY_LEN", "gsk_secure_soc_init()", "GSKit", "Cryptographic Key", "Key Parameter", "Invalid cryptographic key length.");
+        addGskCode(410L, "GSK_ERROR_BAD_CERTIFICATE", "gsk_secure_soc_init()", "GSKit", "X.509 Certificate", "ASN.1 Parsing", "Certificate structure or ASN.1 encoding is invalid.");
+        addGskCode(411L, "GSK_ERROR_BAD_CERT_SIG", "gsk_secure_soc_init()", "GSKit", "X.509 Signature", "Integrity Check", "Certificate signature verification failed.");
+        addGskCode(412L, "GSK_ERROR_UNSUPPORTED_CERTIFICATE_TYPE", "gsk_secure_soc_init()", "GSKit", "Certificate Type", "Policy Error", "Certificate type is not supported by GSKit.");
+        addGskCode(414L, "GSK_ERROR_NO_CIPHERS", "gsk_secure_soc_init()", "GSKit", "System Value QSSLCSL", "Cipher Negotiation", "No valid cipher suites available or configured in system value QSSLCSL.");
+        addGskCode(415L, "GSK_ERROR_NO_CERTIFICATE", "gsk_secure_soc_init()", "GSKit", "Peer Certificate", "Client Auth", "No certificate was sent by the remote peer.");
+        addGskCode(417L, "GSK_ERROR_BAD_PEER", "gsk_secure_soc_init()", "GSKit", "TLS Protocol Handshake", "Protocol Violation", "Remote peer sent an invalid TLS alert or handshake message.");
+        addGskCode(420L, "GSK_ERROR_SOCKET_CLOSED", "gsk_secure_soc_read()", "GSKit", "TCP/IP Connection", "Connection State", "Secure socket connection was closed.");
+        addGskCode(429L, "GSK_ERROR_NOT_SUPPORTED", "gsk_environment_init()", "GSKit", "GSKit Feature", "Configuration", "Requested TLS feature or protocol version is not supported.");
+        addGskCode(501L, "GSK_CONFLICTING_VALIDATION_TYPES", "gsk_environment_init()", "GSKit", "Validation Settings", "Configuration", "Conflicting validation modes were enabled simultaneously.");
+        addGskCode(6000L, "GSK_AS400_ERROR_NOT_TRUSTED", "gsk_secure_soc_init()", "GSKit", "Trust Store (DEFAULT.KDB)", "Trust Chain Verification", "Certificate Authority (CA) that signed the peer certificate is not trusted.", "WRKLNK OBJ('/QIBM/UserData/ICSS/Cert/Server/*')");
+        addGskCode(6001L, "GSK_AS400_ERROR_BAD_CERTIFICATE", "gsk_secure_soc_init()", "GSKit", "IBM i X.509 Parser", "Certificate Format", "IBM i extended error: Malformed certificate presented.");
+        addGskCode(6002L, "GSK_AS400_ERROR_NO_TEMPORARY_STORAGE", "gsk_environment_init()", "GSKit", "System Storage", "Resource Limit", "Temporary cryptographic storage exhausted on IBM i.");
+        addGskCode(6003L, "GSK_AS400_ERROR_EXPIRED_CERTIFICATE", "gsk_secure_soc_init()", "GSKit", "Peer / Local Certificate", "Certificate Validity", "Certificate presented during handshake has expired.");
+        addGskCode(6004L, "GSK_AS400_ERROR_NO_CERTIFICATE", "gsk_environment_init()", "GSKit", "DCM Application", "Certificate Assignment", "No certificate available for assignment.");
+        addGskCode(6005L, "GSK_AS400_ERROR_CERTIFICATE_REVOKED", "gsk_secure_soc_init()", "GSKit", "CRL / OCSP Responder", "Revocation Check", "Certificate has been revoked according to CRL / OCSP.");
+        addGskCode(6006L, "GSK_AS400_ERROR_NO_REVOCATION_STATUS", "gsk_secure_soc_init()", "GSKit", "CRL / OCSP Server", "Network Availability", "Revocation status could not be determined.");
+        addGskCode(6007L, "GSK_AS400_ERROR_APPLICATION_NOT_REGISTERED", "gsk_environment_init()", "GSKit", "Registration Facility", "Application ID Lookup", "Application ID specified is not registered in Registration Facility (WRKREGINF).", "WRKREGINF");
+        addGskCode(6008L, "GSK_AS400_ERROR_NO_KEYRING", "gsk_environment_init()", "GSKit", "Keyring Object", "IFS Path Resolution", "Keyring or certificate store not found.");
+        addGskCode(6009L, "GSK_AS400_ERROR_INVALID_USAGE", "gsk_secure_soc_init()", "GSKit", "Certificate Extended Key Usage", "Key Usage Validation", "Certificate is not valid for the requested usage (e.g., server vs client authentication).");
+        addGskCode(6010L, "GSK_AS400_ERROR_INVALID_USAGE_FOR_ENCRYPTED_SESSION", "gsk_secure_soc_init()", "GSKit", "Key Usage Field", "Session Encryption", "Certificate key usage does not permit session encryption.");
+        addGskCode(6011L, "GSK_AS400_ERROR_BAD_CIPHER_SUITE", "gsk_secure_soc_init()", "GSKit", "System Value QSSLCSL", "Cipher Suite Negotiation", "No mutual cipher suite negotiated; check system value QSSLCSL.");
+        addGskCode(6012L, "GSK_AS400_ERROR_TIMED_OUT", "gsk_secure_soc_init()", "GSKit", "TLS Handshake Timer", "Network Timeout", "TLS handshake operation timed out.");
+        addGskCode(6013L, "GSK_AS400_ERROR_RENEGOTIATION_NOT_ALLOWED", "gsk_secure_soc_init()", "GSKit", "TLS Session State", "Renegotiation Policy", "Session renegotiation was requested but is disallowed by policy.");
+        addGskCode(6014L, "GSK_AS400_ERROR_INVALID_ATTR", "gsk_environment_init()", "GSKit", "Environment Attributes", "Attribute ID", "Invalid GSKit environment attribute identifier.");
+        addGskCode(6015L, "GSK_AS400_ERROR_INVALID_ATTR_VALUE", "gsk_environment_init()", "GSKit", "Environment Attributes", "Attribute Value", "Invalid GSKit attribute value provided.");
+        addGskCode(6016L, "GSK_AS400_ERROR_NOT_SUPPORTED_FOR_SESSION", "gsk_secure_soc_init()", "GSKit", "Session Parameters", "Session Capability", "Option not supported for active session.");
+        addGskCode(6017L, "GSK_AS400_ERROR_ALPN_NO_MATCH", "gsk_secure_soc_init()", "GSKit", "ALPN Protocols", "Protocol Negotiation", "Application-Layer Protocol Negotiation (ALPN) found no match.");
+        addGskCode(6018L, "GSK_AS400_ERROR_CERT_VALIDATE", "gsk_secure_soc_init()", "GSKit", "Trust Store", "Validation Policy", "Certificate validation check failed.");
+        addGskCode(6019L, "GSK_AS400_ERROR_NO_DEFAULT_CERT", "gsk_environment_init()", "GSKit", "WRKREGINF / *SYSTEM Store", "Certificate Assignment", "Application ID has no certificate assigned in Digital Certificate Manager (WRKREGINF).", "WRKREGINF");
+        addGskCode(6020L, "GSK_AS400_ERROR_SESSION_TICKETS_NOT_SUPPORTED", "gsk_environment_init()", "GSKit", "TLS Session Tickets", "Protocol Feature", "TLS session tickets not supported.");
+        addGskCode(6021L, "GSK_AS400_ERROR_EXTENDED_MASTER_SECRET_NOT_SUPPORTED", "gsk_environment_init()", "GSKit", "Extended Master Secret", "Extension Support", "Extended Master Secret extension not supported.");
     }
 
     private void addGskCode(long code, String constant, String originFunction, String serviceProgram, String targetObject, String failureDomain, String rootCause, String... cmds) {
@@ -156,7 +156,7 @@ public class DcmSearchService {
             res.put("isGskCode", true);
             res.put("rc", code);
             res.put("constant", constName);
-            res.put("serviceProgram", d != null ? d.serviceProgram : "QSYS/QFLAGSK");
+            res.put("serviceProgram", d != null ? d.serviceProgram : "GSKit");
             res.put("originFunction", d != null ? d.originFunction : "gsk_*()");
             res.put("targetObject", d != null ? d.targetObject : "TLS Environment / Socket");
             res.put("failureDomain", d != null ? d.failureDomain : "TLS/SSL Subsystem");
@@ -301,7 +301,7 @@ public class DcmSearchService {
                 m.put("code", entry.getKey());
                 m.put("constant", entry.getValue());
                 m.put("header", "/QIBM/include/gskssl.h");
-                m.put("serviceProgram", "QSYS/QFLAGSK");
+                m.put("serviceProgram", "GSKit");
                 matches.add(m);
             }
         }
